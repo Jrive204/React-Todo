@@ -18,10 +18,18 @@ export default class TodoForm extends Component {
   // class property to submit form
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(this.state.todoText);
-    this.setState({
-      todoText: ""
-    });
+    let name = this.props.todo.map(ele => ele.task);
+    console.log(this.props.todo, `todo`);
+    console.log(name, "todo.task");
+    console.log(this.state.todoText, "text");
+    if (name.includes(this.state.todoText)) {
+      return alert("Task already exist");
+    } else {
+      this.props.addTodo(this.state.todoText);
+      this.setState({
+        todoText: ""
+      });
+    }
   };
 
   render() {
