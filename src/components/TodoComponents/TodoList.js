@@ -6,9 +6,13 @@ import Todo from "./Todo";
 function TodoList(props) {
   return (
     <div className='todo-list'>
-      {props.todo.map(todos => (
-        <Todo key={todos.id} todo={todos} toggleTodo={props.toggleTodo} />
-      ))}
+      {props.todo
+        .filter(td =>
+          td.task.toLowerCase().includes(props.search.toLowerCase().trim())
+        )
+        .map(todos => (
+          <Todo key={todos.id} todo={todos} toggleTodo={props.toggleTodo} />
+        ))}
       <button className='clear-btn' onClick={props.clearTodo}>
         Clear Completed Todos
       </button>

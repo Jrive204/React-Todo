@@ -95,3 +95,8 @@ input::placeholder {
 .clear-btn {
   margin-top: 16px;
 }
+
+.formsearchdiv {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}

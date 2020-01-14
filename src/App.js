@@ -2,6 +2,7 @@ import React from "react";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import "./Todo.css";
+import SearchForm from "./components/TodoComponents/SearchForm";
 
 const data = [
   {
@@ -23,9 +24,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todo: data
+      todo: data,
+      search: ""
     };
   }
+  handleSearchChanges = e => {
+    // update state with each keystroke
+    this.setState({
+      search: e.target.value
+    });
+  };
+
+  clearSearch = () => {
+    this.setState({
+      search: ``
+    });
+    document.getElementById("formsearch").reset();
+  };
 
   clearTodo = () => {
     const editTodoList = this.state.todo.filter(
@@ -71,11 +86,17 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
+        <SearchForm handleSearchChanges={this.handleSearchChanges} />
         <div className='header'>
           <h1>Todo list</h1>
-          <TodoForm addTodo={this.addTodo} todo={this.state.todo} />
+          <TodoForm
+            addTodo={this.addTodo}
+            todo={this.state.todo}
+            clearSearch={this.clearSearch}
+          />
         </div>
         <TodoList
+          search={this.state.search}
           todo={this.state.todo}
           toggleTodo={this.toggleTodo}
           clearTodo={this.clearTodo}

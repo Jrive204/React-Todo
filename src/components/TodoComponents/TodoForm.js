@@ -26,6 +26,8 @@ export default class TodoForm extends Component {
       return alert("Task already exist");
     } else {
       this.props.addTodo(this.state.todoText);
+      console.log(this.props.clearSearch, `search`);
+      this.props.clearSearch();
       this.setState({
         todoText: ""
       });
