@@ -27,7 +27,7 @@ class App extends React.Component {
     };
   }
 
-  clearTodo = id => {
+  clearTodo = () => {
     const editTodoList = this.state.todo.filter(
       todos => todos.completed === false
     );

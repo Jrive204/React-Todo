@@ -19,6 +19,9 @@ export default class TodoForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addTodo(this.state.todoText);
+    this.setState({
+      todoText: ""
+    });
   };
 
   render() {
@@ -26,6 +29,8 @@ export default class TodoForm extends Component {
       <form onSubmit={this.handleSubmit}>
         {/* This is an uncontrolled component 😬 We want it to be controlled by state */}
         <input
+          id='form'
+          required
           type='text'
           name='item'
           value={this.state.todoText}
