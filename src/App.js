@@ -21,6 +21,7 @@ class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
+  userTodo;
   constructor() {
     super();
     this.state = {
@@ -54,8 +55,7 @@ class App extends React.Component {
 
   toggleTodo = id => {
     // find the item we clicked on
-    // toggle the purchased field
-    // update state with the new grocery data
+
     const newTodoList = this.state.todo.map(todos => {
       if (todos.id === id) {
         return {
@@ -83,7 +83,27 @@ class App extends React.Component {
     });
   };
 
+  // componentDidMount() {
+  //   this.userTodo = JSON.parse(localStorage.getItem("user"));
+  //   if (localStorage.getItem("user")) {
+  //     this.setState({
+  //       todo: this.userTodo.todo,
+  //       search: this.userTodo.search
+  //     });
+  //   } else {
+  //     this.setState({
+  //       todo: data,
+  //       search: ""
+  //     });
+  //   }
+  // }
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem("user", JSON.stringify(nextState));
+  // }
+
   render() {
+    localStorage.setItem("todo", JSON.parse(this.state.todo));
+
     return (
       <div className='App'>
         <SearchForm handleSearchChanges={this.handleSearchChanges} />
